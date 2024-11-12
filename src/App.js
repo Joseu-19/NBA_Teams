@@ -1,19 +1,17 @@
+import React from "react";
+import PokeCard from "./components/PokeCard";
+
 function App() {
+  const pokemonNames = ["pikachu", "bulbasaur", "charizard", "squirtle", "jigglypuff", "meowth"];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-[#252525] min-h-screen p-10">
+      {/* Container for PokeCard components */}
+      <div className="flex flex-wrap justify-center gap-6">
+        {pokemonNames.map((name) => (
+          <PokeCard key={name} pokemonName={name} />
+        ))}
+      </div>
     </div>
   );
 }
