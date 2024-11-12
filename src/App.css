@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+.logoImg {
+  height: 45px;
+}
+
+.navItem {
+  font-size: large;
+  color: black;
+}
+
+.header {
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 8rem;
+  padding-left: 5rem;
+}
+
+header h1 {
+  font-size: 90px;
+  font-weight: bold;
+  text-shadow:
+  2px 0 black,
+  0 -2px black,
+  -2px 0 black,
+  0 2px black;
+}
+
+header p {
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow:
+  2px 0 black,
+  0 -2px black,
+  -2px 0 black,
+  0 2px black;
+}
+
