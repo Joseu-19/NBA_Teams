@@ -1,20 +1,16 @@
-/* App Container */
 .App {
   text-align: center;
 }
 
-/* Logo Styling */
 .logoImg {
   height: 45px;
 }
 
-/* Navigation Item Styling */
 .navItem {
   font-size: large;
   color: black;
 }
 
-/* Header Styling */
 .header {
   height: 450px;
   display: flex;
@@ -23,18 +19,24 @@
   flex-direction: column;
   margin-bottom: 8rem;
   padding-left: 5rem;
+  padding-top: 2rem;
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+  text-align: left;
 }
 
-header h1 {
-  font-size: 90px;
-  font-weight: bold;
-  text-shadow: 2px 0 black, 0 -2px black, -2px 0 black, 0 2px black;
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
 }
 
-header p {
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: 2px 0 black, 0 -2px black, -2px 0 black, 0 2px black;
+.header p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .pokeDeck {
@@ -83,7 +85,6 @@ header p {
   color: #333;
 }
 
-/* Title and HP Section */
 .poke-card-title {
   display: flex;
   justify-content: space-between;
@@ -105,7 +106,6 @@ header p {
   color: #b91c1c;
 }
 
-/* Image Section */
 .poke-card-image img {
   width: 100%;
   height: auto;
@@ -116,7 +116,6 @@ header p {
   object-fit: cover;
 }
 
-/* Footer Section */
 .poke-card-footer {
   background-color: #f4d700;
   color: #1f2937;
@@ -126,4 +125,25 @@ header p {
   padding: 0.5rem;
   border-radius: 8px;
   margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 300px;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  nav {
+    padding-bottom: 20px;
+  }
 }
