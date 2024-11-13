@@ -1,7 +1,8 @@
 const navItems = [
     { label: "Home", href: "#" },
-    { label: "About", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Pokemons", href: "#" },
+    { label: "Buy", href: "#" },
+    { label: "Ask Us", href: "#" },
 ];
 
 
