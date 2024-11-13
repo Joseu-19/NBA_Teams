@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import navItems from './components/NavData.js';
 import NavBar from './components/Nav.js';
 import Header from './components/Header.js';
@@ -6,6 +7,7 @@ import PokeDeck from './components/PokeDeck.js';
 import Footer from './components/Footer.js';
 
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="App">
