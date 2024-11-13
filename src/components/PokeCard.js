@@ -14,7 +14,7 @@ const PokeCard = () => {
         setIsLoading(true);
         const promises = [];
         
-        for (let i = 1; i <= 51; i++) {
+        for (let i = 1; i <= 20; i++) {
           promises.push(axios.get(`${API}${i}`));
         }
 

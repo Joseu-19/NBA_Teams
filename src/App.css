@@ -80,7 +80,7 @@
 }
 
 .poke-type {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
   color: #333;
 }
@@ -125,6 +125,10 @@
   padding: 0.5rem;
   border-radius: 8px;
   margin-top: 1rem;
+} 
+
+.footerText {
+  font-size: larger;
 }
 
 @media (max-width: 768px) {
