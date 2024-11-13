@@ -3,6 +3,20 @@ import axios from "axios";
 
 const API = "https://pokeapi.co/api/v2/pokemon/";
 
+const cardColors = [
+  { type: "grass", background: "#78C850", border: "green", footer: "lightgreen" },
+  { type: "fire", background: "#F08030", border: "#a83236", footer: "#a85632" },
+  { type: "water", background: "#48e0f9", border: "blue", footer: "lightblue" },
+  { type: "ground", background: "#873e23", border: "brown", footer: "#eab676" },
+  { type: "electric", background: "#00f0ff", border: "#396cff", footer: "white" },
+  { type: "normal", background: "white", border: "grey", footer: "grey" },
+];
+
+const getColorByType = (type) => {
+  const color = cardColors.find((color) => color.type === type);
+  return color || { background: "#A8A878", border: "gray", footer: "lightgray" }; 
+};
+
 const PokeCard = () => {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +28,7 @@ const PokeCard = () => {
         setIsLoading(true);
         const promises = [];
         
-        for (let i = 1; i <= 51; i++) {
+        for (let i = 1; i <= 100; i++) {
           promises.push(axios.get(`${API}${i}`));
         }
 
@@ -45,11 +59,19 @@ const PokeCard = () => {
       {pokemons.map((pokemon) => {
         const { name, sprites, types, stats } = pokemon;
         const imageUrl = sprites.other["official-artwork"].front_default;
-        const type = types.map((typeInfo) => typeInfo.type.name).join(", ");
+        const type = types[0].type.name;
         const hp = stats.find((stat) => stat.stat.name === "hp").base_stat;
 
+        const { background, border, footer } = getColorByType(type);
+
         return (
-          <div key={pokemon.id} className="poke-card">
+          <div key={pokemon.id} className="poke-card" style={{ backgroundColor: background, borderColor: border}}>
+         {/* display gif based on type */}
+
+          {type === "electric" && <div className="overlay electric-overlay"></div>}
+          {type === "fire" && <div className="overlay fire-overlay"></div>}
+          {type === "water" && <div className="overlay water-overlay"></div>}
+
             <div className="poke-card-header">
               <span className="poke-type">Type: {type}</span>
             </div>
@@ -60,7 +82,7 @@ const PokeCard = () => {
             <div className="poke-card-image">
               <img src={imageUrl} alt={name} />
             </div>
-            <div className="poke-card-footer">
+            <div className="poke-card-footer" style={{ backgroundColor: footer }}>
               <span>{name} is a {type} type Pokémon.</span>
             </div>
           </div>
