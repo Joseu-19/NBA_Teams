@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PokeModal from "./PokeModal";
 
 const API = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -14,13 +15,17 @@ const cardColors = [
 
 const getColorByType = (type) => {
   const color = cardColors.find((color) => color.type === type);
-  return color || { background: "#A8A878", border: "gray", footer: "lightgray" }; 
+  return color || {}; 
 };
 
 const PokeCard = () => {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [price, setPrice] = useState(null);
+
+  const prices = [10, 15, 8, 50, 12, 6, 8, 6, 8, 14, 15, 8, 13, 5, 10, 14, 20, 12, 5, 12,2,4,6,7,5,7,4,35,31,5,5,15,10,10,11,13,14,6,3,44,65,100,5,1,20,2,5,5,5,3];
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -28,12 +33,11 @@ const PokeCard = () => {
         setIsLoading(true);
         const promises = [];
         
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 50; i++) { 
           promises.push(axios.get(`${API}${i}`));
         }
 
         const responses = await Promise.all(promises);
-
         const pokemonData = responses.map((response) => response.data);
         setPokemons(pokemonData);
         setIsLoading(false);
@@ -46,6 +50,16 @@ const PokeCard = () => {
     fetchPokemonData();
   }, []);
 
+  const openModal = (pokemon, index) => {
+    setSelectedPokemon(pokemon);
+    setPrice(prices[index]);
+  };
+
+  const closeModal = () => {
+    setSelectedPokemon(null);
+    setPrice(null);
+  };
+
   if (isLoading) {
     return <div>Loading Pokémon...</div>;
   }
@@ -56,7 +70,7 @@ const PokeCard = () => {
 
   return (
     <div className="poke-card-container">
-      {pokemons.map((pokemon) => {
+      {pokemons.map((pokemon, index) => {
         const { name, sprites, types, stats } = pokemon;
         const imageUrl = sprites.other["official-artwork"].front_default;
         const type = types[0].type.name;
@@ -65,12 +79,15 @@ const PokeCard = () => {
         const { background, border, footer } = getColorByType(type);
 
         return (
-          <div key={pokemon.id} className="poke-card" style={{ backgroundColor: background, borderColor: border}}>
-         {/* display gif based on type */}
+          <div key={pokemon.id} className="poke-card" onClick={() => openModal(pokemon, index)} style={{ backgroundColor: background, borderColor: border }}>
 
-          {type === "electric" && <div className="overlay electric-overlay"></div>}
-          {type === "fire" && <div className="overlay fire-overlay"></div>}
-          {type === "water" && <div className="overlay water-overlay"></div>}
+            {/* Display gif based on type */}
+
+
+            {type === "electric" && <div className="overlay electric-overlay"></div>}
+            {type === "fire" && <div className="overlay fire-overlay"></div>}
+            {type === "water" && <div className="overlay water-overlay"></div>}
+            {type === "grass" && <div className="overlay grass-overlay"></div>}
 
             <div className="poke-card-header">
               <span className="poke-type">Type: {type}</span>
@@ -88,6 +105,15 @@ const PokeCard = () => {
           </div>
         );
       })}
+
+   
+      {selectedPokemon && (
+        <PokeModal
+          isOpen={!!selectedPokemon}
+          onClose={closeModal}
+          price={price}
+        />
+      )}
     </div>
   );
 };

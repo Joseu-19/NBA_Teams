@@ -40,7 +40,7 @@
 }
 
 .pokeDeck {
-  background-color: #f3f4f6; 
+  background-color: #f3f4f6;
   min-height: 100vh;
   padding: 2.5rem;
   display: flex;
@@ -136,21 +136,84 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.8; /* Adjust opacity for effect */
-  pointer-events: none; /* Allows clicks to pass through */
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .poke-card:hover .electric-overlay {
-  background-image: url('./gifs/lightning.gif');
+  background-image: url("./gifs/lightning.gif");
 }
 
 .poke-card:hover .fire-overlay {
-  background-image: url('./gifs/fire.gif');
-  opacity: .7;
+  background-image: url("./gifs/fire.gif");
+  opacity: 0.7;
 }
 
 .poke-card:hover .water-overlay {
-  background-image: url('./gifs/water2.gif');
+  background-image: url("./gifs/water2.gif");
+}
+
+.poke-card:hover .grass-overlay {
+  background-image: url("./gifs/leaves.gif");
+}
+
+.modal-overlay {
+  position: fixed; /* Changed to fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure this is higher than other elements */
+  opacity: 1; /* Make sure it's fully visible */
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 300px;
+  text-align: center;
+  transform: translateY(-20px);
+  animation: slideIn 0.3s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.modal-content p {
+  font-size: 1.125rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.modal-content button {
+  background-color: #ba8e0f;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #a3760e;
 }
 
 @media (max-width: 768px) {
